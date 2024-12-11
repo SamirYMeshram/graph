@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Code Analysis Progress</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>Python Code Execution and Analysis Progress</h1>
+  <canvas id="progressChart"></canvas>
+  <script>
+    // Static data representing the progress and accuracy of the Python code
+    // Stages: OCR Processing, Text Refinement, Translation
+    const progressData = {
+      labels: ["Start", "OCR Processing", "Text Refinement", "Translation", "Completed"], // Stages of the process
+      datasets: [
+        {
+          label: "Progress (%)",
+          data: [0, 25, 50, 75, 100], // Progress percentage at each stage
+          borderColor: "rgba(75, 192, 192, 1)",
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          tension: 0.4, // Smooth curve for the line
+        },
+        {
+          label: "Accuracy (%)",
+          data: [0, 80, 85, 90, 95], // Accuracy percentages at each stage
+          borderColor: "rgba(192, 75, 192, 1)",
+          backgroundColor: "rgba(192, 75, 192, 0.2)",
+          tension: 0.4, // Smooth curve for the line
+        },
+        {
+          label: "Improvement (%)",
+          data: [0, 0, 5, 10, 15], // Improvement percentages during analysis
+          borderColor: "rgba(192, 192, 75, 1)",
+          backgroundColor: "rgba(192, 192, 75, 0.2)",
+          tension: 0.4, // Smooth curve for the line
+        },
+      ],
+    };
+
+    // Chart configuration
+    const config = {
+      type: "line", // Line graph
+      data: progressData,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: true,
+            position: "top",
+          },
+          title: {
+            display: true,
+            text: "Python Code Execution, Accuracy, and Improvement Analysis",
+          },
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: "Stages",
+            },
+          },
+          y: {
+            title: {
+              display: true,
+              text: "Percentage (%)",
+            },
+            min: 0,
+            max: 100,
+            ticks: {
+              stepSize: 10,
+            },
+          },
+        },
+      },
+    };
+
+    // Render the chart in a canvas element
+    const ctx = document.getElementById("progressChart").getContext("2d");
+    new Chart(ctx, config);
+  </script>
+</body>
+</html>
